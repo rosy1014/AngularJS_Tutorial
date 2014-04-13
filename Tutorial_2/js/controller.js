@@ -2,8 +2,17 @@
  * Created by RuoxiLu on 4/13/14.
  */
 
-var phonecatApp = angular.module('phonecatApp',[]);
+var phonecatApp = angular.module('phonecatApp', []);
 
+phonecatApp.controller('PhoneListCtrl', ['$scope', '$http',
+    function ($scope, $http) {
+        $http.get('phones.json').success(function(data) {
+            $scope.phones = data;
+        });
+
+        $scope.orderProp = 'age';
+    }]);
+/**
 phonecatApp.controller('PhoneListCtrl', function ($scope){
     $scope.phones = [
         {'name': 'Nexus S', 'snippet' :'Fast just got faster with Nexus S.', 'age':1},
@@ -13,4 +22,5 @@ phonecatApp.controller('PhoneListCtrl', function ($scope){
     $scope.orderProp='age'
     $scope.name = "World";
 });
+ */
 
