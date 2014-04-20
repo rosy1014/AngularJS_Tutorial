@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app ng-controller ="RosterCtrl">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=gb2312" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script scr="controller.js"></script>
+    <title>Roster</title>
+</head>
+<body>
+
+<div>
+    <div class = "span2">
+        学号: <input ng-model ="number">
+        班级:
+        <select ng-model ="orderProp">
+            <option value = "username[0,6]">班级</option>
+        </select>
+    </div>
+</div>
+
+<div class="span10">
+    <ul class="info">
+        <li ng-repeat="user in rosterList | filter:query | orderBy:orderProp">
+            {{rosterList.user}}
+            <p>{{user.name}}</p>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
