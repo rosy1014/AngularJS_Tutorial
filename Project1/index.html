@@ -27,7 +27,7 @@
         <li>Ñ§ºÅ: {{search}}</li>
         <li>°à¼¶: {{orderProp}}</li>
         <p></p>
-        <li ng-repeat="user in users | filter: search|filter:orderProp">{{user.name}}----{{user.username}}
+        <li ng-repeat="user in users | filter: orderProp+ search">{{user.name}}----{{user.username}}
 
         </li>
     </ul>
