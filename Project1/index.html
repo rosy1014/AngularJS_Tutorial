@@ -1,40 +1,36 @@
 <!DOCTYPE html>
-<html ng-app="rosterList">
+<html ng-app="roster">
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=gb2312"/>
-    <script scr="Project1/controller.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"></script>
+    <script src="jquery-1.9.1.min.js"></script>
+    <script src="angular.js"></script>
+    <script src="controller.js"></script>
 
     <title>Roster</title>
 </head>
 <body>
-<div>
-    <label>Name:</label>
-    <input type="text" ng-model="yourName" placeholder="Enter a name here">
-    <hr>
-    <h1>Hello {{yourName}}!</h1>
-    <h1>{{1+2}}</h1>
-</div>
 
-<div ng-controller = "RosterCtrl">
+<div ng-controller="RosterCtrl">
     <div class="span2">
-        学号: <input type = "text" ng-model="query">
-        班级:
-        <select ng-model="orderProp">
-            <option value="username">班级</option>
+
+        学号: <input type="text" ng-model="search">
+        班级:（总数{{classList().length}}）
+        <select ng-model="orderProp" ng-option='classNumber for classNumber in classList()'>
+            <option value=""></option>
+            <option ng-repeat="classNumber in classList()">{{classNumber}}</option>
         </select>
     </div>
-</div>
 
-<div class="span10">
-    <ul>
-        <li ng-repeat="user in rosterList | filter: user.username[0:5]" >
-            {{user}}
-            <p>{{rosterList.user.name}}</p>
+
+    <ul style="margin-bottom:10px; list-style-type: none">
+        <li>学号: {{search}}</li>
+        <li>班级: {{orderProp}}</li>
+        <p></p>
+        <li ng-repeat="user in users | filter: search|filter:orderProp">{{user.name}}----{{user.username}}
 
         </li>
     </ul>
-    <p>{{1+2}}</p>
 </div>
 
 </body>
